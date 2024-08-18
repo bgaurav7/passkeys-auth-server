@@ -27,8 +27,8 @@ exports.register = [
 	body("email").isLength({ min: 1 }).trim().withMessage("Email must be specified.")
 		.isEmail().withMessage("Email must be a valid email address.").custom((value) => {
 			return UserModel.findOne({email : value}).then((user) => {
-				if (user) {
-					return Promise.reject("E-mail already in use");
+				if (user && user.isConfirmed) {
+					return Promise.reject("Account already registered.");
 				}
 			});
 		}).escape(),
