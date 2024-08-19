@@ -18,7 +18,7 @@ const { constants } = require("../helpers/constants");
  *
  * @returns {Object}
  */
-exports.register = [
+exports.registerPassword = [
 	// Validate fields.
 	body("firstName").isLength({ min: 1 }).trim().withMessage("First name must be specified.")
 		.isAlphanumeric().withMessage("First name has non-alphanumeric characters.").escape(),
@@ -96,7 +96,7 @@ exports.register = [
  *
  * @returns {Object}
  */
-exports.login = [
+exports.loginPassword = [
 	body("email").isLength({ min: 1 }).trim().withMessage("Email must be specified.")
 		.isEmail().withMessage("Email must be a valid email address.").escape(),
 	body("password").isLength({ min: 1 }).trim().withMessage("Password must be specified.").escape(),
