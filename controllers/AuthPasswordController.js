@@ -85,6 +85,7 @@ exports.registerPassword = [
 				});
 			}
 		} catch (err) {
+			console.log(err)
 			//throw error in json response with status 500.
 			return apiResponse.ErrorResponse(res, err);
 		}
@@ -148,6 +149,7 @@ exports.loginPassword = [
 				});
 			}
 		} catch (err) {
+			console.log(err)
 			return apiResponse.ErrorResponse(res, err);
 		}
 	}];
@@ -182,6 +184,7 @@ exports.registerVerifyPassword = [
 									isConfirmed: 1,
 									confirmOTP: null 
 								}).catch(err => {
+									console.log(err)
 									return apiResponse.ErrorResponse(res, err);
 								});
 								return apiResponse.successResponse(res,"Account confirmed success.");
@@ -197,6 +200,7 @@ exports.registerVerifyPassword = [
 				});
 			}
 		} catch (err) {
+			console.log(err)
 			return apiResponse.ErrorResponse(res, err);
 		}
 	}];

@@ -115,6 +115,7 @@ exports.registerPasskeys = [
 				});
 			}
 		} catch (err) {
+			console.log(err)
 			//throw error in json response with status 500.
 			return apiResponse.ErrorResponse(res, err);
 		}
@@ -167,8 +168,9 @@ exports.registerVerifyPasskeys = [
 								UserModel.findOneAndUpdate(query, {
 									isConfirmed: 1,
 									confirmOTP: null,
-									registrationInfo: JSON.stringify(registrationInfo),
+									registrationInfo: JSON.stringify(registrationInfo, utility.jsonReplacer),
 								}).catch(err => {
+									console.log(err)
 									return apiResponse.ErrorResponse(res, err);
 								});
 								return apiResponse.successResponse(res,"Account confirmed success.");
@@ -226,7 +228,7 @@ exports.loginPasskeys = [
 									
 									const rpId = passkeys.getRpId()
 									console.log("loginPasskeys rpId=", rpId);
-									let registrationInfo = JSON.parse(user.registrationInfo);
+									let registrationInfo = JSON.parse(user.registrationInfo, utility.jsonReviver);
 									console.log("loginPasskeys credentialID=", registrationInfo.credentialID);
 									let responseJson = {
 										challenge,
@@ -252,6 +254,7 @@ exports.loginPasskeys = [
 				});
 			}
 		} catch (err) {
+			console.log(err)
 			return apiResponse.ErrorResponse(res, err);
 		}
 	}];
@@ -283,8 +286,8 @@ exports.loginVerifyPasskeys = [
 							if(user.status) {
 								let verification;
 								try {
-									const registrationInfo = user.registrationInfo
-									console.log("loginVerifyPasskeys registrationInfo=", registrationInfo);;
+									const registrationInfo = JSON.parse(user.registrationInfo, utility.jsonReviver)
+									console.log("loginVerifyPasskeys registrationInfo=", registrationInfo)
 									const rpId = passkeys.getRpId()
 									const challenge = user.challenge;
 									console.log("loginVerifyPasskeys challenge=", challenge);
