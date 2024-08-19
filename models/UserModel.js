@@ -8,6 +8,8 @@ var UserSchema = new mongoose.Schema({
 	isConfirmed: {type: Boolean, required: true, default: 0},
 	confirmOTP: {type: String, required:false},
 	otpTries: {type: Number, required:false, default: 0},
+	challenge: {type: String, required:false},
+	registrationInfo: {type: String, required:false},
 	status: {type: Boolean, required: true, default: 1}
 }, {timestamps: true});
 

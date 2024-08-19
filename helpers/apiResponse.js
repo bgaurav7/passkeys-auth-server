@@ -15,6 +15,16 @@ exports.successResponseWithData = function (res, msg, data) {
 	return res.status(200).json(resData);
 };
 
+exports.successResponseWithDataWithReq = function (res, msg, data, request) {
+	var resData = {
+		status: true,
+		message: msg,
+		data: data,
+		request: request
+	};
+	return res.status(200).json(resData);
+};
+
 exports.ErrorResponse = function (res, msg) {
 	var data = {
 		status: false,

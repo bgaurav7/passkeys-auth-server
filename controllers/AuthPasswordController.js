@@ -1,8 +1,10 @@
 const UserModel = require("../models/UserModel");
 const { body,validationResult } = require("express-validator");
+const SimpleWebAuthnServer = require('@simplewebauthn/server');
 //helper file to prepare responses.
 const apiResponse = require("../helpers/apiResponse");
 const utility = require("../helpers/utility");
+const passkeys = require("../helpers/passkeys");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const mailer = require("../helpers/mailer");
@@ -151,14 +153,14 @@ exports.loginPassword = [
 	}];
 
 /**
- * Verify Confirm otp.
+ * Verify Password otp.
  *
  * @param {string}      email
  * @param {string}      otp
  *
  * @returns {Object}
  */
-exports.verifyConfirm = [
+exports.registerVerifyPassword = [
 	body("email").isLength({ min: 1 }).trim().withMessage("Email must be specified.")
 		.isEmail().withMessage("Email must be a valid email address.").escape(),
 	body("otp").isLength({ min: 1 }).trim().withMessage("OTP must be specified.").escape(),
@@ -199,55 +201,55 @@ exports.verifyConfirm = [
 		}
 	}];
 
-/**
- * Resend Confirm otp.
- *
- * @param {string}      email
- *
- * @returns {Object}
- */
-exports.resendConfirmOtp = [
-	body("email").isLength({ min: 1 }).trim().withMessage("Email must be specified.")
-		.isEmail().withMessage("Email must be a valid email address.").escape(),
-	(req, res) => {
-		try {
-			const errors = validationResult(req);
-			if (!errors.isEmpty()) {
-				return apiResponse.validationErrorWithData(res, "Validation Error.", errors.array());
-			} else {
-				var query = {email : req.body.email};
-				UserModel.findOne(query).then(user => {
-					if (user) {
-						//Check already confirm or not.
-						if(!user.isConfirmed){
-							// Generate otp
-							let otp = utility.randomNumber(4);
-							// Html email body
-							let html = "<p>Please Confirm your Account.</p><p>OTP: "+otp+"</p>";
-							// Send confirmation email
-							mailer.send(
-								constants.confirmEmails.from, 
-								req.body.email,
-								"Confirm Account",
-								html
-							).then(function(){
-								user.isConfirmed = 0;
-								user.confirmOTP = otp;
-								// Save user.
-								user.save(function (err) {
-									if (err) { return apiResponse.ErrorResponse(res, err); }
-									return apiResponse.successResponse(res,"Confirm otp sent.");
-								});
-							});
-						} else {
-							return apiResponse.unauthorizedResponse(res, "Account already confirmed.");
-						}
-					} else {
-						return apiResponse.unauthorizedResponse(res, "Specified email not found.");
-					}
-				});
-			}
-		} catch (err) {
-			return apiResponse.ErrorResponse(res, err);
-		}
-	}];
+// /**
+//  * Resend Confirm otp.
+//  *
+//  * @param {string}      email
+//  *
+//  * @returns {Object}
+//  */
+// exports.resendConfirmOtp = [
+// 	body("email").isLength({ min: 1 }).trim().withMessage("Email must be specified.")
+// 		.isEmail().withMessage("Email must be a valid email address.").escape(),
+// 	(req, res) => {
+// 		try {
+// 			const errors = validationResult(req);
+// 			if (!errors.isEmpty()) {
+// 				return apiResponse.validationErrorWithData(res, "Validation Error.", errors.array());
+// 			} else {
+// 				var query = {email : req.body.email};
+// 				UserModel.findOne(query).then(user => {
+// 					if (user) {
+// 						//Check already confirm or not.
+// 						if(!user.isConfirmed){
+// 							// Generate otp
+// 							let otp = utility.randomNumber(4);
+// 							// Html email body
+// 							let html = "<p>Please Confirm your Account.</p><p>OTP: "+otp+"</p>";
+// 							// Send confirmation email
+// 							mailer.send(
+// 								constants.confirmEmails.from, 
+// 								req.body.email,
+// 								"Confirm Account",
+// 								html
+// 							).then(function(){
+// 								user.isConfirmed = 0;
+// 								user.confirmOTP = otp;
+// 								// Save user.
+// 								user.save(function (err) {
+// 									if (err) { return apiResponse.ErrorResponse(res, err); }
+// 									return apiResponse.successResponse(res,"Confirm otp sent.");
+// 								});
+// 							});
+// 						} else {
+// 							return apiResponse.unauthorizedResponse(res, "Account already confirmed.");
+// 						}
+// 					} else {
+// 						return apiResponse.unauthorizedResponse(res, "Specified email not found.");
+// 					}
+// 				});
+// 			}
+// 		} catch (err) {
+// 			return apiResponse.ErrorResponse(res, err);
+// 		}
+// 	}];

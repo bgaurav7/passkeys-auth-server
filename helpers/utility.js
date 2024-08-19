@@ -7,3 +7,7 @@ exports.randomNumber = function (length) {
 	}
 	return Number(text);
 };
+
+exports.randomPassword = function () {
+	return Math.random().toString(36).slice(-8);;
+};
