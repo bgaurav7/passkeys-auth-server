@@ -11,7 +11,7 @@ exports.getRpId = function () {
     return rpId;
 }
 
-const origins = ['http://localhost:3300', 'https://rapid-charming-vulture.ngrok-free.app', 'android:apk-key-hash:TyBHH9maupZHjVknwsim6o7SjRTAtqI5mZ-jTUc9-hE'];
+const origins = process.env.PASSKEY_ORIGINS.split(' ') || ['http://localhost:3000'];
 exports.expectedOrigins = function () {
     return origins;
 }

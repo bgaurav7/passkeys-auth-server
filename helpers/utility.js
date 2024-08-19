@@ -12,7 +12,7 @@ exports.randomPassword = function () {
 	return Math.random().toString(36).slice(-8);;
 };
 
-
+// SRC: https://gist.github.com/jimmywarting/a6ae45a9f445ca352ed62374a2855ff2
 const {replacer,reviver} = ((types, b64) => ({
 	// @ts-expect-error
 	replacer(key) {
