@@ -1,22 +1,22 @@
 {
 	"info": {
-		"_postman_id": "b59237a7-b99e-401e-b0c6-39203c202949",
-		"name": "REST API NodeJS",
-		"description": "A boilerplate for REST API Development with Node.js and Expressjs",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"_postman_id": "10e99d9e-f3cc-4536-a4c9-76c4636b6d5e",
+		"name": "Passkeys Server",
+		"description": "Passkeys Demo NodeJS Server",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4171263"
 	},
 	"item": [
 		{
-			"name": "Auth",
+			"name": "Auth Password",
 			"item": [
 				{
-					"name": "Register",
+					"name": "Register Password",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/x-www-form-urlencoded",
 								"type": "text"
 							}
@@ -26,56 +26,47 @@
 							"urlencoded": [
 								{
 									"key": "firstName",
-									"value": "test",
+									"value": "Gaurav",
 									"type": "text"
 								},
 								{
 									"key": "lastName",
-									"value": "testing",
+									"value": "Bansal",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "Test@123",
+									"value": "Test@1234",
 									"type": "text"
 								},
 								{
 									"key": "email",
-									"value": "test@testing.com",
+									"value": "gauravbansal9999@gmail.com",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/register?=",
-							"protocol": "http",
+							"raw": "{{DOMAIN}}/api/auth/register-password",
 							"host": [
-								"localhost"
+								"{{DOMAIN}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auth",
-								"register"
-							],
-							"query": [
-								{
-									"key": "",
-									"value": ""
-								}
+								"register-password"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Login",
+					"name": "Register Verify Password",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/x-www-form-urlencoded",
 								"type": "text"
 							}
@@ -85,66 +76,21 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "test@testing.com",
-									"type": "text"
-								},
-								{
-									"key": "password",
-									"value": "Test@123",
-									"type": "text"
-								}
-							]
-						},
-						"url": {
-							"raw": "http://localhost:3000/api/auth/login",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "3000",
-							"path": [
-								"api",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Verify Confirm OTP",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
-								{
-									"key": "email",
-									"value": "mjsuthar@yopmail.com",
+									"value": "gauravbansal9999@gmail.com",
 									"type": "text"
 								},
 								{
 									"key": "otp",
-									"value": "6442",
+									"value": "8113",
 									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/verify-otp",
-							"protocol": "http",
+							"raw": "{{DOMAIN}}/api/auth/verify-otp",
 							"host": [
-								"localhost"
+								"{{DOMAIN}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auth",
@@ -155,13 +101,187 @@
 					"response": []
 				},
 				{
-					"name": "Resend Confirm OTP",
+					"name": "Login Password",
 					"request": {
 						"method": "POST",
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "fohawe2680@acpeak.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test2123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/auth/login-password",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Auth Passkeys",
+			"item": [
+				{
+					"name": "Register Passkeys",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "firstName",
+									"value": "Gaurav",
+									"type": "text"
+								},
+								{
+									"key": "lastName",
+									"value": "Bansal",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "roxed54841@acpeak.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/auth/register-passkeys",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register-passkeys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Verify Passkeys",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "test@test.com",
+									"type": "text"
+								},
+								{
+									"key": "otp",
+									"value": "8113",
+									"type": "text"
+								},
+								{
+									"key": "response",
+									"value": "{}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/auth/register-verify-passkeys",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"register-verify-passkeys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Passkeys",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/x-www-form-urlencoded",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "fohawe2680@acpeak.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Test2123",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{DOMAIN}}/api/auth/login-passkeys",
+							"host": [
+								"{{DOMAIN}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login-passkeys"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Verify",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
 								"value": "application/x-www-form-urlencoded",
 								"type": "text"
 							}
@@ -173,20 +293,23 @@
 									"key": "email",
 									"value": "maitraysuthar@gmail.com",
 									"type": "text"
+								},
+								{
+									"key": "response",
+									"value": "{}",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/auth/resend-verify-otp",
-							"protocol": "http",
+							"raw": "{{DOMAIN}}/api/auth/login-verify-passkeys",
 							"host": [
-								"localhost"
+								"{{DOMAIN}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"auth",
-								"resend-verify-otp"
+								"login-verify-passkeys"
 							]
 						}
 					},
@@ -204,13 +327,12 @@
 						"header": [
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/x-www-form-urlencoded",
 								"type": "text"
 							},
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQwMzc0ODllY2I2ZDUyNjAzZDQ1ZjMiLCJmaXJzdE5hbWUiOiJ0ZXN0IiwibGFzdE5hbWUiOiJ0ZXN0aW5nIiwiZW1haWwiOiJ0ZXN0QHRlc3RpbmcuY29tIiwiaWF0IjoxNTY0NzI1NTMxLCJleHAiOjE1NjQ3MzI3MzF9.YEGMugzT_ijNgAeBYe4O6hZoidkG_hX9x-1QjQKuJYI",
+								"value": "{{JWT}}",
 								"type": "text"
 							}
 						],
@@ -235,12 +357,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/book",
-							"protocol": "http",
+							"raw": "{{DOMAIN}}/api/book",
 							"host": [
-								"localhost"
+								"{{DOMAIN}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"book"
@@ -256,17 +376,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQwMzc0ODllY2I2ZDUyNjAzZDQ1ZjMiLCJmaXJzdE5hbWUiOiJ0ZXN0IiwibGFzdE5hbWUiOiJ0ZXN0aW5nIiwiZW1haWwiOiJ0ZXN0QHRlc3RpbmcuY29tIiwiaWF0IjoxNTY0NzQ0NzQ4LCJleHAiOjE1NjQ3NTE5NDh9.gE2DjhWgNmPFyy7K21MEC4bIm3gbbDicdE_eorFIZ0o",
+								"value": "{{JWT}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/book",
-							"protocol": "http",
+							"raw": "{{DOMAIN}}/api/book",
 							"host": [
-								"localhost"
+								"{{DOMAIN}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"book"
@@ -282,17 +400,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQwMzc0ODllY2I2ZDUyNjAzZDQ1ZjMiLCJmaXJzdE5hbWUiOiJ0ZXN0IiwibGFzdE5hbWUiOiJ0ZXN0aW5nIiwiZW1haWwiOiJ0ZXN0QHRlc3RpbmcuY29tIiwiaWF0IjoxNTY0NzQ0NzQ4LCJleHAiOjE1NjQ3NTE5NDh9.gE2DjhWgNmPFyy7K21MEC4bIm3gbbDicdE_eorFIZ0o",
+								"value": "{{JWT}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/book/5d43d14a246036209713e667",
-							"protocol": "http",
+							"raw": "{{DOMAIN}}/api/book/5d43d14a246036209713e667",
 							"host": [
-								"localhost"
+								"{{DOMAIN}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"book",
@@ -309,12 +425,11 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQwMzc0ODllY2I2ZDUyNjAzZDQ1ZjMiLCJmaXJzdE5hbWUiOiJ0ZXN0IiwibGFzdE5hbWUiOiJ0ZXN0aW5nIiwiZW1haWwiOiJ0ZXN0QHRlc3RpbmcuY29tIiwiaWF0IjoxNTY0OTkzMDgwLCJleHAiOjE1NjUwMDAyODB9.Lm0-ociCVNxhL7rnzeCO9i1mmJx1bZRQEJoPCNaHkIA",
+								"value": "{{JWT}}",
 								"type": "text"
 							},
 							{
 								"key": "Content-Type",
-								"name": "Content-Type",
 								"value": "application/x-www-form-urlencoded",
 								"type": "text"
 							}
@@ -340,12 +455,10 @@
 							]
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/book/5d43d753cdbdd1264291806c",
-							"protocol": "http",
+							"raw": "{{DOMAIN}}/api/book/5d43d753cdbdd1264291806c",
 							"host": [
-								"localhost"
+								"{{DOMAIN}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"book",
@@ -362,17 +475,15 @@
 						"header": [
 							{
 								"key": "Authorization",
-								"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDQwMzc0ODllY2I2ZDUyNjAzZDQ1ZjMiLCJmaXJzdE5hbWUiOiJ0ZXN0IiwibGFzdE5hbWUiOiJ0ZXN0aW5nIiwiZW1haWwiOiJ0ZXN0QHRlc3RpbmcuY29tIiwiaWF0IjoxNTY1MDAxNzQ3LCJleHAiOjE1NjUwMDg5NDd9.NFq5JjFI4nEU7_1oAt2Zj91q0vRSdd3d5to-T_7aRJ4",
+								"value": "{{JWT}}",
 								"type": "text"
 							}
 						],
 						"url": {
-							"raw": "http://localhost:3000/api/book/5d43d753cdbdd1264291806c",
-							"protocol": "http",
+							"raw": "{{DOMAIN}}/api/book/5d43d753cdbdd1264291806c",
 							"host": [
-								"localhost"
+								"{{DOMAIN}}"
 							],
-							"port": "3000",
 							"path": [
 								"api",
 								"book",
@@ -383,6 +494,57 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "AssetLinks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{DOMAIN}}/.well-known/assetlinks.json",
+					"host": [
+						"{{DOMAIN}}"
+					],
+					"path": [
+						".well-known",
+						"assetlinks.json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "JWT",
+			"value": "Bearer eyJfaWQiOiI1ZDQwMzc0ODllY2I2ZDUyNjAzZDQ1ZjMiLCJmaXJzdE5hbWUiOiJ0ZXN0IiwibGFzdE5hbWUiOiJ0ZXN0aW5nIiwiZW1haWwiOiJ0ZXN0QHRlc3RpbmcuY29tIiwiaWF0IjoxNTY0NzI1NTMxLCJleHAiOjE1NjQ3MzI3MzF9"
+		},
+		{
+			"key": "DOMAIN",
+			"value": "http://localhost:3000",
+			"type": "string"
 		}
 	]
 }

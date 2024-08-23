@@ -29,6 +29,10 @@ This project demonstrates an implementation of an authentication service using E
 1. Installation: Run `npm install` in the project directory to install required dependencies.
 2. Start Server: Run `npm start` to start the server.
 
+## Docker Setup:
+
+1. Run `docker compose up -d` in the project to start docker services on port 4040.
+
 ## Additional Resources:
 
 1. Android Sample: A sample Android application demonstrating passkey usage is available at https://github.com/bgaurav7/passkeys-auth-android.
