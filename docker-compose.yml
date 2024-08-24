@@ -25,6 +25,7 @@ services:
     # Overwrite any env var defined in .env file (if required)
     environment:
       - MONGODB_URL=mongodb://mongo:27017/passkeys-mongodb
+      - PASSKEY_RPID=e39d-49-36-111-192.ngrok-free.app
 
     # Link to containers in another service.
     # Links also express dependency between services in the same way as depends_on,
