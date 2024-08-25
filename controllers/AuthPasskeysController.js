@@ -81,6 +81,10 @@ exports.registerPasskeys = [
 
 							console.log("registerPasskeys savedChallenge=", user.challenge);
 
+							// ID isn't visible by users, but needs to be random enough and valid base64 (for Android)
+							const userId = user._id.toString("base64")
+							console.log("registerPasskeys userId=", userId);
+
 							//Configure Passkeys Challenge Request
 							// TODO: Move to Central Config
 							const requestData = {
@@ -90,7 +94,7 @@ exports.registerPasskeys = [
 									name: 'webauthn-app'
 								},
 								user: {
-									id: user.email, 
+									id: userId, 
 									name: user.firstName, 
 									displayName: user.fullName
 								},
